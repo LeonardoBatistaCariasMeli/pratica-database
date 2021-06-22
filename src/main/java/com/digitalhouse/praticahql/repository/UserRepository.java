@@ -13,23 +13,23 @@ import java.util.List;
 @Repository
 public interface UserRepository extends CrudRepository<UserData, Long> {
 
-    @Query("SELECT u FROM UserData u")
+    @Query(value = "SELECT * FROM user as u", nativeQuery = true)
     public List<UserData> findAllUsers();
 
-    @Query("SELECT u FROM UserData u WHERE u.name LIKE %:name%")
+    @Query(value = "SELECT * FROM user as u WHERE u.name LIKE %:name%", nativeQuery = true)
     public List<UserData> getUserByNameContains(@Param("name") String name);
 
-    @Query("SELECT u FROM UserData u WHERE u.id = :id")
+    @Query(value = "SELECT * FROM user as u WHERE u.id = :id", nativeQuery = true)
     public UserData getUserById(@Param("id") Long id);
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM UserData WHERE id = :id")
+    @Query(value = "DELETE FROM user WHERE id = :id", nativeQuery = true)
     public void deleteUser(@Param("id") Long id);
 
     @Modifying
     @Transactional
-    @Query("UPDATE UserData SET password=:password WHERE id = :id")
+    @Query(value = "UPDATE user as u SET password=:password WHERE u.id = :id", nativeQuery = true)
     public void updateUserPassword(@Param("password") String password, @Param("id") Long id);
 
 }
