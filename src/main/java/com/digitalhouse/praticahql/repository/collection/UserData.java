@@ -1,14 +1,13 @@
-package com.digitalhouse.praticahql.repository.entity;
+package com.digitalhouse.praticahql.repository.collection;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "user")
+@Document(collection = "user")
 public class UserData {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String name;
     private String email;
     private String password;
@@ -16,18 +15,24 @@ public class UserData {
     public UserData() {
     }
 
-    public UserData(Long id, String name, String email, String password) {
+    public UserData(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    public UserData(String id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

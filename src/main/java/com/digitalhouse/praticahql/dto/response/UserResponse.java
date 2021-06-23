@@ -1,20 +1,24 @@
 package com.digitalhouse.praticahql.dto.response;
 
 public class UserResponse {
-    private Long id;
+    private String id;
     private String name;
     private String email;
     private String password;
 
-    public UserResponse(Long id, String name, String email, String password) {
+    public UserResponse(String id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
